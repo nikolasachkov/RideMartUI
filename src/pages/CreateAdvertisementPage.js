@@ -82,7 +82,6 @@ const CreateAdvertisementPage = () => {
             navigate(`/advertisements/${response.id}`);
         } catch (error) {
             console.error("Error creating advertisement:", error);
-            // Handle error (e.g., show error message to user)
         }
     };
 

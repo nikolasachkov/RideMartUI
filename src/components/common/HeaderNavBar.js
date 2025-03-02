@@ -1,9 +1,13 @@
-import React from "react";
 import { AppBar, Toolbar } from "@mui/material";
 import LogoSection from "./LogoSection";
 import UserActions from "./UserActions";
 
 const HeaderNavBar = ({ isLoggedIn, anchorEl, handleMenu, handleClose, handleProfile, handleLogout, navigate, handleCreateAd, handleFilter, hasFilter }) => {
+    const handleSavedAds = () => {
+        navigate("/saved-ads");
+        handleClose();
+    };
+
     return (
         <AppBar position="sticky" color="default" elevation={1}>
             <Toolbar sx={{ justifyContent: "space-between", minHeight: { xs: "48px", sm: "80px" }, py: 0.5 }}>
@@ -15,6 +19,7 @@ const HeaderNavBar = ({ isLoggedIn, anchorEl, handleMenu, handleClose, handlePro
                     handleClose={handleClose}
                     handleProfile={handleProfile}
                     handleLogout={handleLogout}
+                    handleSavedAds={handleSavedAds}
                     navigate={navigate}
                 />
             </Toolbar>

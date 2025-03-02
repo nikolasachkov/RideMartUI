@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { TextField, Button, MenuItem, Typography, Box, Drawer, FormControl, InputLabel, Select } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";
-import { formatModelName } from "../../../utils/stringFormatters";
+import { formatModelName } from "../../utils/stringFormatters";
 
 const AdFilter = ({ isOpen, onClose, filter, handleChange, onFilter, makesAndModels }) => {
     useEffect(() => {
