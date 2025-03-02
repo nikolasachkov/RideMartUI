@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Container, CircularProgress, Alert, Box } from "@mui/material";
+"use client";
+
+import { useState, useEffect } from "react";
+import { Container, CircularProgress, Alert, Box, Snackbar } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -9,7 +11,7 @@ import AdDescription from "../components/advertisements/advertisement-page/AdDes
 import AdSpecifications from "../components/advertisements/advertisement-page/AdSpecifications";
 import AdContacts from "../components/advertisements/advertisement-page/AdContacts";
 import PhotoSlider from "../components/advertisements/advertisement-page/PhotoSlider";
-import { getUserProfile } from "../utils/api";
+import { getUserProfile, getSavedAdvertisements, saveAdvertisement, unsaveAdvertisement } from "../utils/api";
 
 const AdvertisementPage = () => {
     const [ad, setAd] = useState(null);
@@ -17,6 +19,10 @@ const AdvertisementPage = () => {
     const [error, setError] = useState(null);
     const { id } = useParams();
     const [userProfile, setUserProfile] = useState(null);
+    const [isSaved, setIsSaved] = useState(false);
+    const [snackbar, setSnackbar] = useState({ open: false, message: "" });
+    const [savedAds, setSavedAds] = useState([]);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
         const fetchAd = async () => {
@@ -26,6 +32,14 @@ const AdvertisementPage = () => {
 
                 const userProfile = await getUserProfile(adResponse.data.userId);
                 setUserProfile(userProfile);
+
+                if (token) {
+                    const savedAdsResponse = await getSavedAdvertisements();
+                    setSavedAds(savedAdsResponse);
+
+                    const isCurrentAdSaved = savedAdsResponse.some((savedAd) => savedAd.id === Number.parseInt(id));
+                    setIsSaved(isCurrentAdSaved);
+                }
             } catch (err) {
                 setError(err.response?.data?.message || "Failed to fetch advertisement details");
             } finally {
@@ -34,7 +48,38 @@ const AdvertisementPage = () => {
         };
 
         fetchAd();
-    }, [id]);
+    }, [id, token]);
+
+    const handleToggleSave = async (adId) => {
+        if (!token) {
+            setSnackbar({
+                open: true,
+                message: "Please log in to save advertisements",
+            });
+            return;
+        }
+
+        try {
+            if (isSaved) {
+                await unsaveAdvertisement(adId);
+                setSnackbar({ open: true, message: "Advertisement unsaved successfully" });
+            } else {
+                await saveAdvertisement(adId);
+                setSnackbar({ open: true, message: "Advertisement saved successfully" });
+            }
+            setIsSaved(!isSaved);
+        } catch (err) {
+            setSnackbar({
+                open: true,
+                message: "Error saving/unsaving advertisement",
+            });
+            console.error("Error toggling save:", err);
+        }
+    };
+
+    const handleCloseSnackbar = () => {
+        setSnackbar({ ...snackbar, open: false });
+    };
 
     if (loading)
         return (
@@ -75,6 +120,9 @@ const AdvertisementPage = () => {
                             location={`${ad.city}, ${ad.street} St, No. ${ad.streetNumber}`}
                             price={ad.motorbikeDetails.price}
                             phoneNumber={userProfile.phoneNumber}
+                            isSaved={isSaved}
+                            onToggleSave={handleToggleSave}
+                            adId={ad.id}
                         />
                     </Grid2>
 
@@ -94,6 +142,8 @@ const AdvertisementPage = () => {
                     </Grid2>
                 </Grid2>
             </Container>
+
+            <Snackbar open={snackbar.open} autoHideDuration={4000} onClose={handleCloseSnackbar} message={snackbar.message} />
         </Box>
     );
 };

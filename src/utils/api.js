@@ -62,4 +62,58 @@ export const getFilteredAdvertisements = async (filterParams) => {
     }
 };
 
+api.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
+api.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+        }
+        return Promise.reject(error);
+    }
+);
+
+export const getSavedAdvertisements = async () => {
+    const token = localStorage.getItem("token");
+    const response = await api.get("/saved-ads", {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+};
+
+export const saveAdvertisement = async (advertisementId) => {
+    const token = localStorage.getItem("token");
+    const response = await api.post(
+        `/saved-ads/${advertisementId}`,
+        {},
+        {
+            headers: { Authorization: `Bearer ${token}` },
+        }
+    );
+    return response.data;
+};
+
+export const unsaveAdvertisement = async (advertisementId) => {
+    const token = localStorage.getItem("token");
+    const response = await api.delete(`/saved-ads/${advertisementId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+};
+
 export default api;

@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import AdvertisementPage from "./pages/AdvertisementPage";
 import MainLayout from "./layouts/MainLayout";
 import CreateAdvertisementPage from "./pages/CreateAdvertisementPage";
+import SavedAdsPage from "./pages/SavedAdsPage";
 
 const theme = createTheme({
     palette: {
@@ -65,6 +66,7 @@ function App() {
                         <Route path="/register" element={<RegisterPage />} />
                         <Route path="/advertisements/:id" element={<AdvertisementPage />} />
                         <Route path="/create-advertisement" element={<CreateAdvertisementPage />} />
+                        <Route path="/saved-ads" element={<SavedAdsPage />} />
                     </Route>
                 </Routes>
             </Router>

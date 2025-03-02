@@ -1,8 +1,7 @@
-import React from "react";
-import { Box, Avatar, Menu, MenuItem, Button } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material";
+import { Box, Avatar, Menu, MenuItem, Button, ListItemIcon } from "@mui/material";
+import { AccountCircle, Bookmark } from "@mui/icons-material";
 
-const UserActions = ({ isLoggedIn, anchorEl, handleMenu, handleClose, handleProfile, handleLogout, navigate }) => {
+const UserActions = ({ isLoggedIn, anchorEl, handleMenu, handleClose, handleProfile, handleLogout, handleSavedAds, navigate }) => {
     return (
         <Box>
             {isLoggedIn ? (
@@ -10,8 +9,25 @@ const UserActions = ({ isLoggedIn, anchorEl, handleMenu, handleClose, handleProf
                     <Avatar onClick={handleMenu} sx={{ cursor: "pointer" }}>
                         <AccountCircle />
                     </Avatar>
-                    <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-                        <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                        transformOrigin={{ horizontal: "right", vertical: "top" }}
+                        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                    >
+                        <MenuItem onClick={handleProfile}>
+                            <ListItemIcon>
+                                <AccountCircle fontSize="small" />
+                            </ListItemIcon>
+                            Profile
+                        </MenuItem>
+                        <MenuItem onClick={handleSavedAds}>
+                            <ListItemIcon>
+                                <Bookmark fontSize="small" />
+                            </ListItemIcon>
+                            Saved Ads
+                        </MenuItem>
                         <MenuItem onClick={handleLogout}>Log out</MenuItem>
                     </Menu>
                 </div>

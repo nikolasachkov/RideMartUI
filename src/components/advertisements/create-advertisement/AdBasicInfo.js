@@ -1,4 +1,3 @@
-// src/components/advertisements/create-advertisement/AdBasicInfo.js
 import React from "react";
 import { TextField, Typography, Box } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";

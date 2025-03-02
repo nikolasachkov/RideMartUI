@@ -1,8 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Typography, Box, IconButton } from "@mui/material";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
 
-const AdCard = ({ ad, liked, handleLike }) => {
+const AdCard = ({ ad }) => {
     return (
         <Card sx={{ display: "flex", cursor: "pointer", "&:hover": { boxShadow: 6 } }} onClick={() => (window.location.href = `/advertisements/${ad.id}`)}>
             <CardMedia component="img" sx={{ width: 280, height: 200, objectFit: "cover" }} image={ad.photos[0].photoUrl || "/placeholder.svg"} alt={ad.title} />
@@ -16,16 +15,6 @@ const AdCard = ({ ad, liked, handleLike }) => {
                         Location: {ad.city}
                     </Typography>
                 </CardContent>
-                <Box sx={{ display: "flex", alignItems: "center", pl: 2, pb: 2 }}>
-                    <IconButton
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            handleLike(ad.id);
-                        }}
-                    >
-                        {liked ? <Favorite color="error" /> : <FavoriteBorder />}
-                    </IconButton>
-                </Box>
             </Box>
         </Card>
     );
