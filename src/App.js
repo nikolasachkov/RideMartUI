@@ -12,6 +12,7 @@ import SavedAdsPage from "./pages/SavedAdsPage";
 import ProfilePage from "./pages/ProfilePage";
 import MyAdsPage from "./pages/MyAdsPage";
 import EditProfilePage from "./pages/EditProfilePage";
+import EditAdvertisementPage from "./pages/EditAdvertisementPage";
 
 const theme = createTheme({
     palette: {
@@ -69,6 +70,7 @@ function App() {
                         <Route path="/register" element={<RegisterPage />} />
                         <Route path="/advertisements/:id" element={<AdvertisementPage />} />
                         <Route path="/create-advertisement" element={<CreateAdvertisementPage />} />
+                        <Route path="/edit-advertisement/:id" element={<EditAdvertisementPage />} />
                         <Route path="/saved-ads" element={<SavedAdsPage />} />
                         <Route path="/profile" element={<ProfilePage />} />
                         <Route path="/edit-profile" element={<EditProfilePage />} />

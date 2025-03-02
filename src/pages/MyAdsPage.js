@@ -62,9 +62,6 @@ const MyAdsPage = () => {
                     <Typography variant="h4" component="h1">
                         My Advertisements
                     </Typography>
-                    <Button variant="contained" startIcon={<AddIcon />} onClick={handleCreateAd}>
-                        Create New Ad
-                    </Button>
                 </Box>
 
                 {ads.length === 0 ? (

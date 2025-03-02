@@ -132,4 +132,30 @@ export const getUserAdvertisements = async () => {
     return response.data;
 };
 
+export const getAdvertisementById = async (id) => {
+    const response = await api.get(`/advertisements/${id}`);
+    return response.data;
+};
+
+export const updateAdvertisement = async (id, advertisementData) => {
+    const token = localStorage.getItem("token");
+    const response = await api.put(`/advertisements/${id}`, advertisementData, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+    });
+    return response.data;
+};
+
+export const deleteAdvertisement = async (id) => {
+    const token = localStorage.getItem("token");
+    const response = await api.delete(`/advertisements/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response.data;
+};
+
 export default api;
