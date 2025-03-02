@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api";
+const API_URL = "/api";
 
 const api = axios.create({
     baseURL: API_URL,
@@ -10,18 +10,18 @@ const api = axios.create({
 });
 
 export const login = async (username, password) => {
-    const response = await api.post("/login", { username, password });
+    const response = await api.post("/auth/login", { username, password });
     return response.data;
 };
 
 export const register = async (username, email, password, phoneNumber) => {
-    const response = await api.post("/register", { username, email, password, phoneNumber });
+    const response = await api.post("/auth/register", { username, email, password, phoneNumber });
     return response.data;
 };
 
-export const getUserProfile = async () => {
+export const getUserProfile = async (id) => {
     const token = localStorage.getItem("token");
-    const response = await api.get("/profile", {
+    const response = await api.get(`/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
