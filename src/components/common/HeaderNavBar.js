@@ -7,7 +7,7 @@ const HeaderNavBar = ({ isLoggedIn, anchorEl, handleMenu, handleClose, handlePro
     return (
         <AppBar position="sticky" color="default" elevation={1}>
             <Toolbar sx={{ justifyContent: "space-between", minHeight: { xs: "48px", sm: "80px" }, py: 0.5 }}>
-                <LogoSection hasFilter={hasFilter} handleFilter={handleFilter} handleCreateAd={handleCreateAd} />
+                <LogoSection hasFilter={hasFilter} handleFilter={handleFilter} handleCreateAd={handleCreateAd} navigate={navigate} />
                 <UserActions
                     isLoggedIn={isLoggedIn}
                     anchorEl={anchorEl}

@@ -37,10 +37,7 @@ export const logout = () => {
 };
 
 export const getMotorcycleMakesAndModels = async () => {
-    const token = localStorage.getItem("token");
-    const response = await api.get("/motorcycles/all", {
-        headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await api.get("/motorcycles/all");
     return response.data;
 };
 
@@ -53,6 +50,16 @@ export const createAdvertisement = async (advertisementData) => {
         },
     });
     return response.data;
+};
+
+export const getFilteredAdvertisements = async (filterParams) => {
+    try {
+        const response = await axios.get(`${API_URL}/advertisements/filter`, { params: filterParams });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching filtered advertisements:", error);
+        throw error;
+    }
 };
 
 export default api;
