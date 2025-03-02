@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AdvertisementPage from "./pages/AdvertisementPage";
 import MainLayout from "./layouts/MainLayout";
+import CreateAdvertisementPage from "./pages/CreateAdvertisementPage";
 
 const theme = createTheme({
     palette: {
@@ -31,11 +32,14 @@ function App() {
             <CssBaseline />
             <Router>
                 <Routes>
-                    <Route element={<MainLayout />}>
+                    <Route element={<MainLayout hasFilter />}>
                         <Route path="/" element={<HomePage />} />
+                    </Route>
+                    <Route element={<MainLayout />}>
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
-                        <Route path="/advertisements/:id" element={<AdvertisementPage />} />{" "}
+                        <Route path="/advertisements/:id" element={<AdvertisementPage />} />
+                        <Route path="/create-advertisement" element={<CreateAdvertisementPage />} />
                     </Route>
                 </Routes>
             </Router>

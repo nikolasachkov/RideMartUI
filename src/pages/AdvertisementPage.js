@@ -36,7 +36,13 @@ const AdvertisementPage = () => {
         fetchAd();
     }, [id]);
 
-    if (loading) return <CircularProgress />;
+    if (loading)
+        return (
+            <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+                <CircularProgress />
+            </Box>
+        );
+
     if (error) return <Alert severity="error">{error}</Alert>;
     if (!ad) return <Alert severity="info">Advertisement not found</Alert>;
 
@@ -64,7 +70,12 @@ const AdvertisementPage = () => {
                         <PhotoSlider photos={ad.photos} title={ad.title}></PhotoSlider>
                     </Grid2>
                     <Grid2 size={4}>
-                        <AdInfo title={ad.title} location={ad.city} price={ad.motorbikeDetails.price} phoneNumber={userProfile.phoneNumber} />
+                        <AdInfo
+                            title={ad.title}
+                            location={`${ad.city}, ${ad.street} St, No. ${ad.streetNumber}`}
+                            price={ad.motorbikeDetails.price}
+                            phoneNumber={userProfile.phoneNumber}
+                        />
                     </Grid2>
 
                     {/* Description row */}

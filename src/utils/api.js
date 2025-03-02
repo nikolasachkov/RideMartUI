@@ -20,10 +20,7 @@ export const register = async (username, email, password, phoneNumber) => {
 };
 
 export const getUserProfile = async (id) => {
-    const token = localStorage.getItem("token");
-    const response = await api.get(`/users/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await api.get(`/users/${id}`);
     return response.data;
 };
 
@@ -37,6 +34,25 @@ export const updateUserProfile = async (userData) => {
 
 export const logout = () => {
     localStorage.removeItem("token");
+};
+
+export const getMotorcycleMakesAndModels = async () => {
+    const token = localStorage.getItem("token");
+    const response = await api.get("/motorcycles/all", {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+};
+
+export const createAdvertisement = async (advertisementData) => {
+    const token = localStorage.getItem("token");
+    const response = await api.post("/advertisements", advertisementData, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+    });
+    return response.data;
 };
 
 export default api;

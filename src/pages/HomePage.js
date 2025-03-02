@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Box, CircularProgress, Alert } from "@mui/material";
-import AdList from "../components/advertisements/AdList";
+import AdList from "../components/advertisements/home-page/AdList";
 
 const HomePage = () => {
     const [ads, setAds] = useState([]);
