@@ -26,7 +26,7 @@ export const getUserProfile = async (id) => {
 
 export const updateUserProfile = async (userData) => {
     const token = localStorage.getItem("token");
-    const response = await api.put("/profile", userData, {
+    const response = await api.put("/users/me", userData, {
         headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
@@ -111,6 +111,22 @@ export const saveAdvertisement = async (advertisementId) => {
 export const unsaveAdvertisement = async (advertisementId) => {
     const token = localStorage.getItem("token");
     const response = await api.delete(`/saved-ads/${advertisementId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+};
+
+export const getAuthenticatedUser = async () => {
+    const token = localStorage.getItem("token");
+    const response = await api.get("/users/me", {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+};
+
+export const getUserAdvertisements = async () => {
+    const token = localStorage.getItem("token");
+    const response = await api.get("/advertisements/my-ads", {
         headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
