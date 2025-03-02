@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import HeaderNavBar from "../components/common/HeaderNavBar";
 import Footer from "../components/common/Footer";
 import { Outlet } from "react-router";
 
-const MainLayout = ({ hasFilter }) => {
+const MainLayout = ({ hasFilter, isFilterOpen, toggleFilter }) => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -22,7 +22,7 @@ const MainLayout = ({ hasFilter }) => {
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    });
+    }, []);
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -52,11 +52,6 @@ const MainLayout = ({ hasFilter }) => {
         }
     };
 
-    const handleFilter = () => {
-        // Implement filter functionality
-        console.log("Filter button clicked");
-    };
-
     return (
         <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
             <HeaderNavBar
@@ -69,7 +64,7 @@ const MainLayout = ({ hasFilter }) => {
                 navigate={navigate}
                 handleCreateAd={handleCreateAd}
                 hasFilter={hasFilter}
-                handleFilter={handleFilter}
+                handleFilter={toggleFilter}
                 showLogo={!showFullHeader}
             />
             <Outlet />

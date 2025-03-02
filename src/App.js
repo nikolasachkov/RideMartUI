@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -27,13 +27,38 @@ const theme = createTheme({
 });
 
 function App() {
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [filter, setFilter] = useState({
+        city: "",
+        make: "",
+        model: "",
+        minYear: "",
+        maxYear: "",
+        minPrice: "",
+        maxPrice: "",
+        engineType: "",
+        motorbikeType: "",
+    });
+
+    const toggleFilter = () => {
+        setIsFilterOpen(!isFilterOpen);
+    };
+
+    const handleFilterChange = (event) => {
+        const { name, value } = event.target;
+        setFilter((prevFilter) => ({ ...prevFilter, [name]: value }));
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Router>
                 <Routes>
-                    <Route element={<MainLayout hasFilter />}>
-                        <Route path="/" element={<HomePage />} />
+                    <Route element={<MainLayout hasFilter isFilterOpen={isFilterOpen} toggleFilter={toggleFilter} />}>
+                        <Route
+                            path="/"
+                            element={<HomePage isFilterOpen={isFilterOpen} toggleFilter={toggleFilter} filter={filter} handleFilterChange={handleFilterChange} />}
+                        />
                     </Route>
                     <Route element={<MainLayout />}>
                         <Route path="/login" element={<LoginPage />} />
