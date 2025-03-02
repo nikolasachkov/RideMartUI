@@ -9,6 +9,9 @@ import AdvertisementPage from "./pages/AdvertisementPage";
 import MainLayout from "./layouts/MainLayout";
 import CreateAdvertisementPage from "./pages/CreateAdvertisementPage";
 import SavedAdsPage from "./pages/SavedAdsPage";
+import ProfilePage from "./pages/ProfilePage";
+import MyAdsPage from "./pages/MyAdsPage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 const theme = createTheme({
     palette: {
@@ -67,6 +70,9 @@ function App() {
                         <Route path="/advertisements/:id" element={<AdvertisementPage />} />
                         <Route path="/create-advertisement" element={<CreateAdvertisementPage />} />
                         <Route path="/saved-ads" element={<SavedAdsPage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/edit-profile" element={<EditProfilePage />} />
+                        <Route path="/my-ads" element={<MyAdsPage />} />
                     </Route>
                 </Routes>
             </Router>
