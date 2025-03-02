@@ -8,7 +8,7 @@ const AdFilter = ({ isOpen, onClose, filter, handleChange, onFilter, makesAndMod
         if (filter.make === "") {
             handleChange({ target: { name: "model", value: "" } });
         }
-    }, [filter.make, handleChange]);
+    }, [filter.make]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

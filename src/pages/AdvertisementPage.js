@@ -1,17 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Container, CircularProgress, Alert, Box, Snackbar } from "@mui/material";
+import { Container, CircularProgress, Alert, Box, Snackbar, Button } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Edit as EditIcon } from "@mui/icons-material";
 
 import AdInfo from "../components/advertisements/advertisement-page/AdInfo";
 import AdDescription from "../components/advertisements/advertisement-page/AdDescription";
 import AdSpecifications from "../components/advertisements/advertisement-page/AdSpecifications";
 import AdContacts from "../components/advertisements/advertisement-page/AdContacts";
 import PhotoSlider from "../components/advertisements/advertisement-page/PhotoSlider";
-import { getUserProfile, getSavedAdvertisements, saveAdvertisement, unsaveAdvertisement } from "../utils/api";
+import { getUserProfile, getSavedAdvertisements, saveAdvertisement, unsaveAdvertisement, getAuthenticatedUser } from "../utils/api";
 
 const AdvertisementPage = () => {
     const [ad, setAd] = useState(null);
@@ -22,10 +23,12 @@ const AdvertisementPage = () => {
     const [isSaved, setIsSaved] = useState(false);
     const [snackbar, setSnackbar] = useState({ open: false, message: "" });
     const [savedAds, setSavedAds] = useState([]);
+    const [loggedInUserId, setLoggedInUserId] = useState(null);
     const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchAd = async () => {
+        const fetchData = async () => {
             try {
                 const adResponse = await axios.get(`/api/advertisements/${id}`);
                 setAd(adResponse.data);
@@ -39,6 +42,9 @@ const AdvertisementPage = () => {
 
                     const isCurrentAdSaved = savedAdsResponse.some((savedAd) => savedAd.id === Number.parseInt(id));
                     setIsSaved(isCurrentAdSaved);
+
+                    const authenticatedUser = await getAuthenticatedUser();
+                    setLoggedInUserId(authenticatedUser.id);
                 }
             } catch (err) {
                 setError(err.response?.data?.message || "Failed to fetch advertisement details");
@@ -47,7 +53,7 @@ const AdvertisementPage = () => {
             }
         };
 
-        fetchAd();
+        fetchData();
     }, [id, token]);
 
     const handleToggleSave = async (adId) => {
@@ -79,6 +85,10 @@ const AdvertisementPage = () => {
 
     const handleCloseSnackbar = () => {
         setSnackbar({ ...snackbar, open: false });
+    };
+
+    const handleEditAd = () => {
+        navigate(`/edit-advertisement/${id}`);
     };
 
     if (loading)
@@ -124,6 +134,11 @@ const AdvertisementPage = () => {
                             onToggleSave={handleToggleSave}
                             adId={ad.id}
                         />
+                        {loggedInUserId === ad.userId && (
+                            <Button variant="contained" color="primary" startIcon={<EditIcon />} onClick={handleEditAd} fullWidth sx={{ mt: 2 }}>
+                                Edit Ad
+                            </Button>
+                        )}
                     </Grid2>
 
                     {/* Description row */}
