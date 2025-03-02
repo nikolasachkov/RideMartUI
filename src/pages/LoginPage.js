@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Box, Typography, Paper } from "@mui/material";
+import { Container, Typography, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { login } from "../utils/api";
 import LoginForm from "../components/auth/LoginForm";
 
 const LoginPage = () => {
@@ -9,10 +9,10 @@ const LoginPage = () => {
 
     const handleLogin = async (credentials, setError) => {
         try {
-            const response = await axios.post("/api/auth/login", credentials);
+            const data = await login(credentials.username, credentials.password);
 
-            if (response.data.token) {
-                localStorage.setItem("token", response.data.token);
+            if (data.token) {
+                localStorage.setItem("token", data.token);
                 navigate("/");
             } else {
                 setError("Login failed: No token received");

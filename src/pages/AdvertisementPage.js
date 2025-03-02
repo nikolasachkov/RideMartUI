@@ -1,27 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { Container, Box, CircularProgress, Alert, Paper, Typography } from "@mui/material";
+import { Container, CircularProgress, Alert, Box } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Header from "../components/common/Header";
-import AdImage from "../components/advertisements/AdImage";
-import AdDetails from "../components/advertisements/AdDetails";
-import AdContact from "../components/advertisements/AdContact";
+
+import AdInfo from "../components/advertisements/advertisement-page/AdInfo";
+import AdDescription from "../components/advertisements/advertisement-page/AdDescription";
+import AdSpecifications from "../components/advertisements/advertisement-page/AdSpecifications";
+import AdContacts from "../components/advertisements/advertisement-page/AdContacts";
+import PhotoSlider from "../components/advertisements/advertisement-page/PhotoSlider";
+import { getUserProfile } from "../utils/api";
 
 const AdvertisementPage = () => {
     const [ad, setAd] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [error, setError] = useState(null);
     const { id } = useParams();
+    const [userProfile, setUserProfile] = useState(null);
 
     useEffect(() => {
         const fetchAd = async () => {
             try {
-                const response = await axios.get(`/api/advertisements/${id}`);
-                setAd(response.data);
-                setLoading(false);
+                const adResponse = await axios.get(`/api/advertisements/${id}`);
+                setAd(adResponse.data);
+
+                const userProfile = await getUserProfile(adResponse.data.userId);
+                setUserProfile(userProfile);
             } catch (err) {
-                setError("Failed to fetch advertisement details");
+                setError(err.response?.data?.message || "Failed to fetch advertisement details");
+            } finally {
                 setLoading(false);
             }
         };
@@ -29,47 +36,54 @@ const AdvertisementPage = () => {
         fetchAd();
     }, [id]);
 
-    if (loading) {
-        return (
-            <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-                <CircularProgress />
-            </Box>
-        );
-    }
-
-    if (error) {
-        return (
-            <Container sx={{ py: 4 }}>
-                <Alert severity="error">{error}</Alert>
-            </Container>
-        );
-    }
+    if (loading) return <CircularProgress />;
+    if (error) return <Alert severity="error">{error}</Alert>;
+    if (!ad) return <Alert severity="info">Advertisement not found</Alert>;
 
     return (
-        <>
-            <Header />
-            <Container maxWidth="lg" sx={{ py: 4 }}>
-                <Grid2 container spacing={4}>
-                    <Grid2 xs={12} md={6}>
-                        <AdImage imageUrl={ad.imageUrl} title={ad.title} />
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                minHeight: "100vh",
+            }}
+        >
+            <Container
+                maxWidth="lg"
+                sx={{
+                    py: 4,
+                    flex: 1,
+                    "& .MuiPaper-root": {
+                        boxShadow: "0 1px 3px rgba(0,0,0,0.12)",
+                    },
+                }}
+            >
+                <Grid2 container spacing={3}>
+                    {/* Top row */}
+                    <Grid2 size={8}>
+                        <PhotoSlider photos={ad.photos} title={ad.title}></PhotoSlider>
                     </Grid2>
-                    <Grid2 xs={12} md={6}>
-                        <AdDetails ad={ad} />
-                        <AdContact contactPhone={ad.contactPhone} contactEmail={ad.contactEmail} />
+                    <Grid2 size={4}>
+                        <AdInfo title={ad.title} location={ad.city} price={ad.motorbikeDetails.price} phoneNumber={userProfile.phoneNumber} />
                     </Grid2>
-                    <Grid2 xs={12}>
-                        <Paper elevation={3} sx={{ p: 3, mt: 2 }}>
-                            <Typography variant="h6" gutterBottom>
-                                Description
-                            </Typography>
-                            <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
-                                {ad.description}
-                            </Typography>
-                        </Paper>
+
+                    {/* Description row */}
+                    <Grid2 size={8}>
+                        <AdDescription description={ad.description} />
+                    </Grid2>
+
+                    {/* Specifications row */}
+                    <Grid2 size={8}>
+                        <AdSpecifications details={ad.motorbikeDetails} />
+                    </Grid2>
+
+                    {/* Contact form row */}
+                    <Grid2 size={8}>
+                        <AdContacts phoneNumber={userProfile.phoneNumber} email={userProfile.email} />
                     </Grid2>
                 </Grid2>
             </Container>
-        </>
+        </Box>
     );
 };
 
