@@ -5,7 +5,7 @@ import HeaderNavBar from "../components/common/HeaderNavBar";
 import Footer from "../components/common/Footer";
 import { Outlet } from "react-router";
 
-const MainLayout = () => {
+const MainLayout = ({ hasFilter }) => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -46,7 +46,7 @@ const MainLayout = () => {
 
     const handleCreateAd = () => {
         if (isLoggedIn) {
-            navigate("/create-ad");
+            navigate("/create-advertisement");
         } else {
             navigate("/login");
         }
@@ -68,6 +68,7 @@ const MainLayout = () => {
                 handleLogout={handleLogout}
                 navigate={navigate}
                 handleCreateAd={handleCreateAd}
+                hasFilter={hasFilter}
                 handleFilter={handleFilter}
                 showLogo={!showFullHeader}
             />

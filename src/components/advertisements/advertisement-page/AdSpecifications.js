@@ -1,5 +1,6 @@
 import React from "react";
 import { Paper, Typography } from "@mui/material";
+import { formatDisplayText, formatModelName } from "../../../utils/stringFormatters";
 
 const AdSpecifications = ({ details }) => {
     return (
@@ -12,7 +13,7 @@ const AdSpecifications = ({ details }) => {
                     Make: <strong>{details?.make}</strong>
                 </p>
                 <p>
-                    Model: <strong>{details?.model}</strong>
+                    Model: <strong>{formatModelName(details?.model)}</strong>
                 </p>
                 <p>
                     Year: <strong>{details?.year}</strong>
@@ -24,13 +25,13 @@ const AdSpecifications = ({ details }) => {
                     Engine Size: <strong>{details?.engineSize} cc</strong>
                 </p>
                 <p>
-                    Engine Type: <strong>{details?.engineType}</strong>
+                    Engine Type: <strong>{formatDisplayText(details?.engineType)}</strong>
                 </p>
                 <p>
-                    Motorbike Type: <strong>{details?.motorbikeType}</strong>
+                    Motorbike Type: <strong>{formatDisplayText(details?.motorbikeType)}</strong>
                 </p>
                 <p>
-                    Fuel System: <strong>{details?.fuelSystemType}</strong>
+                    Fuel System: <strong>{formatDisplayText(details?.fuelSystemType)}</strong>
                 </p>
             </Typography>
         </Paper>

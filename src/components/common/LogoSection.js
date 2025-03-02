@@ -3,12 +3,14 @@ import { Box, Button, IconButton, Typography } from "@mui/material";
 import { FilterList } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
 
-const LogoSection = ({ handleFilter, handleCreateAd }) => {
+const LogoSection = ({ handleFilter, handleCreateAd, hasFilter }) => {
     return (
         <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton onClick={handleFilter} sx={{ mr: 2 }}>
-                <FilterList />
-            </IconButton>
+            {hasFilter && (
+                <IconButton onClick={handleFilter} sx={{ mr: 2 }}>
+                    <FilterList />
+                </IconButton>
+            )}
             <Button variant="contained" color="primary" onClick={handleCreateAd} sx={{ mr: 2 }}>
                 Create an Ad
             </Button>
