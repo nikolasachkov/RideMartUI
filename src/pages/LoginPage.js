@@ -13,7 +13,7 @@ const LoginPage = () => {
 
             if (data.token) {
                 localStorage.setItem("token", data.token);
-                navigate("/");
+                window.location.href = "/";
             } else {
                 setError("Login failed: No token received");
             }
