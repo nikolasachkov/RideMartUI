@@ -58,6 +58,7 @@ const AdMotorbikeDetails = ({ formData, handleChange, makesAndModels }) => {
                         InputProps={{
                             endAdornment: <span style={{ marginLeft: 8 }}>km</span>,
                         }}
+                        inputProps={{ min: 0 }}
                     />
                 </Grid2>
                 <Grid2 size={6}>
@@ -72,6 +73,7 @@ const AdMotorbikeDetails = ({ formData, handleChange, makesAndModels }) => {
                         InputProps={{
                             endAdornment: <span style={{ marginLeft: 8 }}>cc</span>,
                         }}
+                        inputProps={{ min: 0 }}
                     />
                 </Grid2>
                 <Grid2 size={6}>

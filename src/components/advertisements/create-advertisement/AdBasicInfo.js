@@ -33,6 +33,7 @@ const AdBasicInfo = ({ formData, handleChange }) => {
                         InputProps={{
                             endAdornment: <span style={{ marginLeft: 8 }}>лв.</span>,
                         }}
+                        inputProps={{ min: 0 }}
                     />
                 </Grid2>
             </Grid2>

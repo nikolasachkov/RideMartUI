@@ -79,10 +79,56 @@ const AdFilter = ({ isOpen, onClose, filter, handleChange, onFilter, makesAndMod
                             />
                         </Grid2>
                         <Grid2 size={6}>
-                            <TextField fullWidth label="Min Price" name="minPrice" type="number" value={filter.minPrice} onChange={handleChange} />
+                            <TextField
+                                fullWidth
+                                label="Min Price"
+                                name="minPrice"
+                                type="number"
+                                value={filter.minPrice}
+                                onChange={handleChange}
+                                inputProps={{
+                                    min: 0,
+                                }}
+                            />
                         </Grid2>
                         <Grid2 size={6}>
-                            <TextField fullWidth label="Max Price" name="maxPrice" type="number" value={filter.maxPrice} onChange={handleChange} />
+                            <TextField
+                                fullWidth
+                                label="Max Price"
+                                name="maxPrice"
+                                type="number"
+                                value={filter.maxPrice}
+                                onChange={handleChange}
+                                inputProps={{
+                                    min: 0,
+                                }}
+                            />
+                        </Grid2>
+                        <Grid2 size={6}>
+                            <TextField
+                                fullWidth
+                                label="Min Mileage"
+                                name="minMileage"
+                                type="number"
+                                value={filter.minMileage}
+                                onChange={handleChange}
+                                inputProps={{
+                                    min: 0,
+                                }}
+                            />
+                        </Grid2>
+                        <Grid2 size={6}>
+                            <TextField
+                                fullWidth
+                                label="Max Mileage"
+                                name="maxMileage"
+                                type="number"
+                                value={filter.maxMileage}
+                                onChange={handleChange}
+                                inputProps={{
+                                    min: 0,
+                                }}
+                            />
                         </Grid2>
                         <Grid2 size={12}>
                             <TextField fullWidth select label="Engine Type" name="engineType" value={filter.engineType} onChange={handleChange}>
