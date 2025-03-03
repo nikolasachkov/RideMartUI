@@ -4,6 +4,8 @@ import Grid2 from "@mui/material/Grid2";
 import { formatModelName } from "../../utils/stringFormatters";
 
 const AdFilter = ({ isOpen, onClose, filter, handleChange, onFilter, makesAndModels }) => {
+    const currentYear = new Date().getFullYear();
+
     useEffect(() => {
         if (filter.make === "") {
             handleChange({ target: { name: "model", value: "" } });
@@ -49,10 +51,32 @@ const AdFilter = ({ isOpen, onClose, filter, handleChange, onFilter, makesAndMod
                             </TextField>
                         </Grid2>
                         <Grid2 size={6}>
-                            <TextField fullWidth label="Min Year" name="minYear" type="number" value={filter.minYear} onChange={handleChange} />
+                            <TextField
+                                fullWidth
+                                label="Min Year"
+                                name="minYear"
+                                type="number"
+                                value={filter.minYear}
+                                onChange={handleChange}
+                                inputProps={{
+                                    min: 1901,
+                                    max: currentYear + 1,
+                                }}
+                            />
                         </Grid2>
                         <Grid2 size={6}>
-                            <TextField fullWidth label="Max Year" name="maxYear" type="number" value={filter.maxYear} onChange={handleChange} />
+                            <TextField
+                                fullWidth
+                                label="Max Year"
+                                name="maxYear"
+                                type="number"
+                                value={filter.maxYear}
+                                onChange={handleChange}
+                                inputProps={{
+                                    min: 1901,
+                                    max: currentYear + 1,
+                                }}
+                            />
                         </Grid2>
                         <Grid2 size={6}>
                             <TextField fullWidth label="Min Price" name="minPrice" type="number" value={filter.minPrice} onChange={handleChange} />
