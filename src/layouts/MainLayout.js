@@ -5,7 +5,7 @@ import HeaderNavBar from "../components/common/HeaderNavBar";
 import Footer from "../components/common/Footer";
 import { Outlet } from "react-router";
 
-const MainLayout = ({ hasFilter, isFilterOpen, toggleFilter }) => {
+const MainLayout = ({ hasFilter, toggleFilter }) => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
