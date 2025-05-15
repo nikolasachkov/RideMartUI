@@ -1,7 +1,7 @@
 import { Paper, Typography, Box, IconButton, Tooltip } from "@mui/material";
 import { Phone, Bookmark as BookmarkIcon, BookmarkBorder } from "@mui/icons-material";
 
-const AdInfo = ({ title, location, price, phoneNumber, isSaved, onToggleSave, adId }) => {
+const AdBasicInfo = ({ title, location, price, phoneNumber, isSaved, onToggleSave, adId }) => {
     return (
         <Paper elevation={1} sx={{ p: 3 }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -45,4 +45,4 @@ const AdInfo = ({ title, location, price, phoneNumber, isSaved, onToggleSave, ad
     );
 };
 
-export default AdInfo;
+export default AdBasicInfo;

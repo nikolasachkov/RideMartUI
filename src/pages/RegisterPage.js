@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Box, Typography, Paper } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { register } from "../utils/api";
-import RegisterForm from "../components/auth/RegisterForm";
+import RegisterForm from "../components/features/auth/RegisterForm";
 
 const RegisterPage = () => {
     const navigate = useNavigate();

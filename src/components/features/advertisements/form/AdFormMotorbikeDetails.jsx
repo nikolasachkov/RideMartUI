@@ -1,9 +1,9 @@
 import React from "react";
 import { TextField, Typography, Box, MenuItem } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";
-import { formatModelName } from "../../../utils/stringFormatters";
+import { formatModelName } from "../../../../utils/stringFormatters";
 
-const AdMotorbikeDetails = ({ formData, handleChange, makesAndModels }) => {
+const AdFormMotorbikeDetails = ({ formData, handleChange, makesAndModels }) => {
     const currentYear = new Date().getFullYear();
 
     return (
@@ -104,4 +104,4 @@ const AdMotorbikeDetails = ({ formData, handleChange, makesAndModels }) => {
     );
 };
 
-export default AdMotorbikeDetails;
+export default AdFormMotorbikeDetails;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Container, Typography, Box, Avatar, Button, Paper, CircularProgress, Alert, Stack } from "@mui/material";
 import { AccountCircle, Email, Phone, Edit as EditIcon, Bookmark, PostAdd } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { getAuthenticatedUser } from "../utils/api";
 
 const ProfilePage = () => {

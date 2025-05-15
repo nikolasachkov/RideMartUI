@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography, Box, IconButton } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
 
 const AdCard = ({ ad }) => {
     return (

@@ -1,6 +1,6 @@
 import { AppBar, Toolbar } from "@mui/material";
-import LogoSection from "./LogoSection";
-import UserActions from "./UserActions";
+import LogoSection from "../ui/LogoSection";
+import UserActions from "../features/auth/UserActions";
 
 const HeaderNavBar = ({ isLoggedIn, anchorEl, handleMenu, handleClose, handleProfile, handleLogout, navigate, handleCreateAd, handleFilter, hasFilter }) => {
     const handleSavedAds = () => {

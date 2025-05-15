@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, Typography, Box } from "@mui/material";
 
-const AdDescription = ({ formData, handleChange }) => {
+const AdFormDescription = ({ formData, handleChange }) => {
     return (
         <Box>
             <Typography variant="h6" gutterBottom>
@@ -12,4 +12,4 @@ const AdDescription = ({ formData, handleChange }) => {
     );
 };
 
-export default AdDescription;
+export default AdFormDescription;

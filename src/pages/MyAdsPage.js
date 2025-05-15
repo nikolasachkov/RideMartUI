@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { Box, CircularProgress, Alert, Container, Typography, Button } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import AdList from "../components/advertisements/AdList";
+import { useNavigate } from "react-router";
+import AdList from "../components/features/advertisements/list/AdList";
 import { getUserAdvertisements } from "../utils/api";
 
 const MyAdsPage = () => {

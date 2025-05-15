@@ -2,7 +2,7 @@ import React from "react";
 import { TextField, Typography, Box } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";
 
-const AdBasicInfo = ({ formData, handleChange }) => {
+const AdFormBasicInfo = ({ formData, handleChange }) => {
     return (
         <Box>
             <Typography variant="h6" gutterBottom>
@@ -41,4 +41,4 @@ const AdBasicInfo = ({ formData, handleChange }) => {
     );
 };
 
-export default AdBasicInfo;
+export default AdFormBasicInfo;

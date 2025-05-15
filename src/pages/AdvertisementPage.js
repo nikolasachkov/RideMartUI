@@ -3,15 +3,15 @@
 import { useState, useEffect } from "react";
 import { Container, CircularProgress, Alert, Box, Snackbar, Button } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router";
 import axios from "axios";
 import { Edit as EditIcon } from "@mui/icons-material";
 
-import AdInfo from "../components/advertisements/advertisement-page/AdInfo";
-import AdDescription from "../components/advertisements/advertisement-page/AdDescription";
-import AdSpecifications from "../components/advertisements/advertisement-page/AdSpecifications";
-import AdContacts from "../components/advertisements/advertisement-page/AdContacts";
-import PhotoSlider from "../components/advertisements/advertisement-page/PhotoSlider";
+import AdBasicInfo from "../components/features/advertisements/detail/AdBasicInfo";
+import AdDescription from "../components/features/advertisements/detail/AdDescription";
+import AdMotorbikeDetails from "../components/features/advertisements/detail/AdMotorbikeDetails";
+import AdContacts from "../components/features/advertisements/detail/AdContacts";
+import PhotoSlider from "../components/ui/PhotoSlider";
 import { getUserProfile, getSavedAdvertisements, saveAdvertisement, unsaveAdvertisement, getAuthenticatedUser } from "../utils/api";
 
 const AdvertisementPage = () => {
@@ -120,12 +120,11 @@ const AdvertisementPage = () => {
                 }}
             >
                 <Grid2 container spacing={3}>
-                    {/* Top row */}
                     <Grid2 size={8}>
                         <PhotoSlider photos={ad.photos} title={ad.title}></PhotoSlider>
                     </Grid2>
                     <Grid2 size={4}>
-                        <AdInfo
+                        <AdBasicInfo
                             title={ad.title}
                             location={`${ad.city}, ${ad.street} St, No. ${ad.streetNumber}`}
                             price={ad.motorbikeDetails.price}
@@ -141,17 +140,14 @@ const AdvertisementPage = () => {
                         )}
                     </Grid2>
 
-                    {/* Description row */}
                     <Grid2 size={8}>
                         <AdDescription description={ad.description} />
                     </Grid2>
 
-                    {/* Specifications row */}
                     <Grid2 size={8}>
-                        <AdSpecifications details={ad.motorbikeDetails} />
+                        <AdMotorbikeDetails details={ad.motorbikeDetails} />
                     </Grid2>
 
-                    {/* Contact form row */}
                     <Grid2 size={8}>
                         <AdContacts phoneNumber={userProfile.phoneNumber} email={userProfile.email} />
                     </Grid2>

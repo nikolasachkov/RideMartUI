@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Container, Typography, Paper, Box, Button, CircularProgress } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { getMotorcycleMakesAndModels, createAdvertisement } from "../utils/api";
 
-import AdBasicInfo from "../components/advertisements/create-advertisement/AdBasicInfo";
-import AdMotorbikeDetails from "../components/advertisements/create-advertisement/AdMotorbikeDetails";
-import AdDescription from "../components/advertisements/create-advertisement/AdDescription";
-import AdPhotoUpload from "../components/advertisements/create-advertisement/AdPhotoUpload";
+import AdFormBasicInfo from "../components/features/advertisements/form/AdFormBasicInfo";
+import AdFormMotorbikeDetails from "../components/features/advertisements/form/AdFormMotorbikeDetails";
+import AdFormDescription from "../components/features/advertisements/form/AdFormDescription";
+import AdFormPhoto from "../components/features/advertisements/form/AdFormPhoto";
 
 const CreateAdvertisementPage = () => {
     const navigate = useNavigate();
@@ -92,7 +92,6 @@ const CreateAdvertisementPage = () => {
             </Box>
         );
 
-
     return (
         <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
             <Container component="main" maxWidth="md" sx={{ mt: 4, mb: 4 }}>
@@ -103,16 +102,16 @@ const CreateAdvertisementPage = () => {
                     <form onSubmit={handleSubmit}>
                         <Grid2 container spacing={3}>
                             <Grid2 size={12}>
-                                <AdBasicInfo formData={formData} handleChange={handleChange} />
+                                <AdFormBasicInfo formData={formData} handleChange={handleChange} />
                             </Grid2>
                             <Grid2 size={12}>
-                                <AdMotorbikeDetails formData={formData} handleChange={handleChange} makesAndModels={makesAndModels} />
+                                <AdFormMotorbikeDetails formData={formData} handleChange={handleChange} makesAndModels={makesAndModels} />
                             </Grid2>
                             <Grid2 size={12}>
-                                <AdDescription formData={formData} handleChange={handleChange} />
+                                <AdFormDescription formData={formData} handleChange={handleChange} />
                             </Grid2>
                             <Grid2 size={12}>
-                                <AdPhotoUpload photoUrls={photoUrls} setPhotoUrls={setPhotoUrls} />
+                                <AdFormPhoto photoUrls={photoUrls} setPhotoUrls={setPhotoUrls} />
                             </Grid2>
                             <Grid2 size={12}>
                                 <Button type="submit" variant="contained" color="primary" fullWidth>

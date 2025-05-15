@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AdvertisementPage from "./pages/AdvertisementPage";
-import MainLayout from "./layouts/MainLayout";
+import MainLayout from "./components/layout/MainLayout";
 import CreateAdvertisementPage from "./pages/CreateAdvertisementPage";
 import SavedAdsPage from "./pages/SavedAdsPage";
 import ProfilePage from "./pages/ProfilePage";

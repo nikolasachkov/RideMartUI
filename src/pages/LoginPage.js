@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Typography, Paper } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { login } from "../utils/api";
-import LoginForm from "../components/auth/LoginForm";
+import LoginForm from "../components/features/auth/LoginForm";
 
 const LoginPage = () => {
     const navigate = useNavigate();
