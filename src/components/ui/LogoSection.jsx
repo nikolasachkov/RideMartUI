@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { FilterList } from "@mui/icons-material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router";
 
 const LogoSection = ({ handleFilter, handleCreateAd, hasFilter }) => {
     return (

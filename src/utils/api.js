@@ -54,7 +54,10 @@ export const createAdvertisement = async (advertisementData) => {
 
 export const getFilteredAdvertisements = async (filterParams) => {
     try {
-        const response = await axios.get(`${API_URL}/advertisements/filter`, { params: filterParams });
+        const cleanedParams = Object.fromEntries(Object.entries(filterParams).filter(([_, v]) => v !== null && v !== undefined && v !== ""));
+        const response = await axios.get(`${API_URL}/advertisements/filter`, {
+            params: cleanedParams,
+        });
         return response.data;
     } catch (error) {
         console.error("Error fetching filtered advertisements:", error);

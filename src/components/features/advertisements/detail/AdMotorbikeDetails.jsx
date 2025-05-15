@@ -1,8 +1,8 @@
 import React from "react";
 import { Paper, Typography } from "@mui/material";
-import { formatDisplayText, formatModelName } from "../../../utils/stringFormatters";
+import { formatDisplayText, formatModelName } from "../../../../utils/stringFormatters";
 
-const AdSpecifications = ({ details }) => {
+const AdMotorbikeDetails = ({ details }) => {
     return (
         <Paper elevation={1} sx={{ p: 3 }}>
             <Typography variant="h6" gutterBottom>
@@ -38,4 +38,4 @@ const AdSpecifications = ({ details }) => {
     );
 };
 
-export default AdSpecifications;
+export default AdMotorbikeDetails;

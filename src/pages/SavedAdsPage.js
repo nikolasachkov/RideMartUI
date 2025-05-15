@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Container, Typography, Box, CircularProgress, Alert } from "@mui/material";
 import { getSavedAdvertisements } from "../utils/api";
-import AdList from "../components/advertisements/AdList";
+import AdList from "../components/features/advertisements/list/AdList";
 import axios from "axios";
 
 const SavedAdsPage = () => {

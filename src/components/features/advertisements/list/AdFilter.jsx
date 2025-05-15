@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { TextField, Button, MenuItem, Typography, Box, Drawer, FormControl, InputLabel, Select } from "@mui/material";
+import { TextField, Button, MenuItem, Typography, Box, Drawer } from "@mui/material";
 import Grid2 from "@mui/material/Grid2";
-import { formatModelName } from "../../utils/stringFormatters";
+import { formatModelName } from "../../../../utils/stringFormatters";
 
 const AdFilter = ({ isOpen, onClose, filter, handleChange, onFilter, makesAndModels }) => {
     const currentYear = new Date().getFullYear();
@@ -42,12 +42,11 @@ const AdFilter = ({ isOpen, onClose, filter, handleChange, onFilter, makesAndMod
                         <Grid2 size={12}>
                             <TextField fullWidth select label="Model" name="model" value={filter.model} onChange={handleChange} disabled={!filter.make}>
                                 <MenuItem value="">Any</MenuItem>
-                                {filter.make &&
-                                    makesAndModels[filter.make].map((model) => (
-                                        <MenuItem key={model} value={model}>
-                                            {formatModelName(model)}
-                                        </MenuItem>
-                                    ))}
+                                {(makesAndModels[filter.make] || []).map((model) => (
+                                    <MenuItem key={model} value={model}>
+                                        {formatModelName(model)}
+                                    </MenuItem>
+                                ))}
                             </TextField>
                         </Grid2>
                         <Grid2 size={6}>

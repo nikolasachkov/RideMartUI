@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Box, CircularProgress, Alert } from "@mui/material";
-import AdList from "../components/advertisements/AdList";
-import AdFilter from "../components/advertisements/AdFilter";
+import AdList from "../components/features/advertisements/list/AdList";
+import AdFilter from "../components/features/advertisements/list/AdFilter";
 import { getFilteredAdvertisements, getMotorcycleMakesAndModels } from "../utils/api";
 
 const HomePage = ({ isFilterOpen, toggleFilter, filter, handleFilterChange }) => {

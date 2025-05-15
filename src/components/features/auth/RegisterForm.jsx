@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, TextField, Button, Alert, Link } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const RegisterForm = ({ onSubmit }) => {
     const [formData, setFormData] = useState({

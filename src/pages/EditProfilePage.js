@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Container, Typography, Box, Paper, CircularProgress, Alert, Avatar, Button } from "@mui/material";
 import { AccountCircle, ArrowBack } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { getAuthenticatedUser, updateUserProfile } from "../utils/api";
-import ProfileForm from "../components/profile/ProfileForm";
+import ProfileForm from "../components/features/profile/ProfileForm";
 
 const EditProfilePage = () => {
     const [formData, setFormData] = useState({

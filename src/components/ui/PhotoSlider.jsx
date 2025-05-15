@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import { Box } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import AdPhoto from "./AdPhoto";
+import AdPhoto from "../features/advertisements/detail/AdPhoto";
 
 const PhotoSlider = ({ photos, title }) => {
     const settings = {

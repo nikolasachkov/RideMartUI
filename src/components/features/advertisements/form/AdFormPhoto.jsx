@@ -2,7 +2,7 @@ import React from "react";
 import { TextField, Typography, Box, Button, IconButton } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 
-const AdPhotoUpload = ({ photoUrls, setPhotoUrls }) => {
+const AdFormPhoto = ({ photoUrls, setPhotoUrls }) => {
     const handleAddPhoto = () => {
         setPhotoUrls([...photoUrls, ""]);
     };
@@ -52,4 +52,4 @@ const AdPhotoUpload = ({ photoUrls, setPhotoUrls }) => {
     );
 };
 
-export default AdPhotoUpload;
+export default AdFormPhoto;
