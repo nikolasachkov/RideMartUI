@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { TextField, Button, MenuItem, Typography, Box, Drawer } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 import Grid2 from "@mui/material/Grid2";
 import { formatModelName } from "../../../../utils/stringFormatters";
 
@@ -21,9 +23,14 @@ const AdFilter = ({ isOpen, onClose, filter, handleChange, onFilter, makesAndMod
     return (
         <Drawer anchor="left" open={isOpen} onClose={onClose}>
             <Box sx={{ width: 300, padding: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                    Filter Advertisements
-                </Typography>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
+                    <Typography variant="h6" gutterBottom>
+                        Filter Advertisements
+                    </Typography>
+                    <IconButton onClick={onClose} size="small">
+                        <CloseIcon />
+                    </IconButton>
+                </Box>
                 <form onSubmit={handleSubmit}>
                     <Grid2 container spacing={2}>
                         <Grid2 size={12}>

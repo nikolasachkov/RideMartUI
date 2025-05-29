@@ -9,30 +9,28 @@ const AdMotorbikeDetails = ({ details }) => {
                 Motorbike Details
             </Typography>
             <Typography variant="body1" sx={{ lineHeight: 2 }}>
-                <p>
-                    Make: <strong>{details?.make}</strong>
-                </p>
-                <p>
-                    Model: <strong>{formatModelName(details?.model)}</strong>
-                </p>
-                <p>
-                    Year: <strong>{details?.year}</strong>
-                </p>
-                <p>
-                    Mileage: <strong>{details?.mileage} km</strong>
-                </p>
-                <p>
-                    Engine Size: <strong>{details?.engineSize} cc</strong>
-                </p>
-                <p>
-                    Engine Type: <strong>{formatDisplayText(details?.engineType)}</strong>
-                </p>
-                <p>
-                    Motorbike Type: <strong>{formatDisplayText(details?.motorbikeType)}</strong>
-                </p>
-                <p>
-                    Fuel System: <strong>{formatDisplayText(details?.fuelSystemType)}</strong>
-                </p>
+                Make: <strong>{formatDisplayText(details?.make)}</strong>
+            </Typography>
+            <Typography variant="body1" sx={{ lineHeight: 2 }}>
+                Model: <strong>{formatModelName(details?.model)}</strong>
+            </Typography>
+            <Typography variant="body1" sx={{ lineHeight: 2 }}>
+                Year: <strong>{details?.year}</strong>
+            </Typography>
+            <Typography variant="body1" sx={{ lineHeight: 2 }}>
+                Mileage: <strong>{details?.mileage} km</strong>
+            </Typography>
+            <Typography variant="body1" sx={{ lineHeight: 2 }}>
+                Engine Size: <strong>{details?.engineSize} cc</strong>
+            </Typography>
+            <Typography variant="body1" sx={{ lineHeight: 2 }}>
+                Engine Type: <strong>{formatDisplayText(details?.engineType)}</strong>
+            </Typography>
+            <Typography variant="body1" sx={{ lineHeight: 2 }}>
+                Motorbike Type: <strong>{formatDisplayText(details?.motorbikeType)}</strong>
+            </Typography>
+            <Typography variant="body1" sx={{ lineHeight: 2 }}>
+                Fuel System: <strong>{formatDisplayText(details?.fuelSystemType)}</strong>
             </Typography>
         </Paper>
     );

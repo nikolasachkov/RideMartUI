@@ -28,7 +28,14 @@ const Footer = () => {
                     <Box sx={{ display: "flex", gap: 3 }}>
                         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                             <Email fontSize="small" />
-                            <Typography variant="body2">support@ridemart.com</Typography>
+                            <Typography
+                                variant="body2"
+                                component="a"
+                                href="mailto:support@ridemart.com"
+                                sx={{ color: "inherit", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
+                            >
+                                support@ridemart.com
+                            </Typography>
                         </Box>
                     </Box>
                 </Box>

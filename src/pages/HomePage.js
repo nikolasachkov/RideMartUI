@@ -33,6 +33,8 @@ const HomePage = ({ isFilterOpen, toggleFilter, filter, handleFilterChange }) =>
         toggleFilter();
     };
 
+    const isFiltered = Object.values(filter).some((v) => v);
+
     if (loading)
         return (
             <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
@@ -44,7 +46,17 @@ const HomePage = ({ isFilterOpen, toggleFilter, filter, handleFilterChange }) =>
     return (
         <Box>
             <AdFilter isOpen={isFilterOpen} onClose={toggleFilter} filter={filter} handleChange={handleFilterChange} onFilter={handleFilter} makesAndModels={makesAndModels} />
-            <AdList ads={ads} likedAds={likedAds} handleLike={() => {}} />
+            {ads.length === 0 ? (
+                <Box display="flex" justifyContent="center" mt={4}>
+                    <Alert severity="info" sx={{ backgroundColor: "#e6f4fd" }}>
+                        {isFiltered
+                            ? "No advertisements match your filters. Try adjusting the filters and search again."
+                            : "There are no advertisements posted yet. Be the first to create one!"}
+                    </Alert>
+                </Box>
+            ) : (
+                <AdList ads={ads} likedAds={likedAds} handleLike={() => {}} />
+            )}
         </Box>
     );
 };

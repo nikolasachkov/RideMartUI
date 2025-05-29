@@ -99,7 +99,7 @@ const EditAdvertisementPage = () => {
 
             const response = await updateAdvertisement(id, advertisementData);
             console.log("Advertisement updated:", response);
-            navigate(`/advertisements/${id}`);
+            navigate(`/advertisements/${id}`, { replace: true });
         } catch (error) {
             console.error("Error updating advertisement:", error);
             setError("Failed to update advertisement. Please try again.");

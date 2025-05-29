@@ -79,7 +79,7 @@ const CreateAdvertisementPage = () => {
 
             const response = await createAdvertisement(advertisementData);
             console.log("Advertisement created:", response);
-            navigate(`/advertisements/${response.id}`);
+            navigate(`/advertisements/${response.id}`, { replace: true });
         } catch (error) {
             console.error("Error creating advertisement:", error);
         }
